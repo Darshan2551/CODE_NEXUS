@@ -4,27 +4,6 @@ let script = document.createElement("script");
 script.type = "text/javascript";
 script.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
 document.body.appendChild(script);
-function sendMail(event) {
-  event.preventDefault(); // stop form from submitting and refreshing the page
-
-  let parms = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    message: document.getElementById("message").value,
-  };
-
-  emailjs
-    .send("service_7tyjlqf", "template_4lucuzo", parms)
-    .then(function (response) {
-      alert("Your email has been received!!");
-      console.log("SUCCESS!", response.status, response.text);
-      document.getElementById("feedback-form").reset(); // clear the form after sending
-    })
-    .catch(function (error) {
-      console.error("FAILED...", error);
-      alert("Failed to send email. Please try again later.");
-    });
-}
 
 // Header
 
@@ -169,10 +148,10 @@ let footer = $(`
                 <form id="feedback-form" onsubmit="sendMail(event)">
                   <input id="name" type="text" name="name" placeholder="Your Name" required/>
                   <input id="email" type="email" name="email" placeholder="Email Address" required/>                  
-                  <textarea id="textArea" name="message" placeholder="Type your Message" required></textarea>
+                  <textarea id="message" name="message" placeholder="Type your Message" required></textarea>
               
                   <div id="main">
-                    <button id="lnch" type="button" value="Send" >Send</button>
+                    <button id="lnch" type="submit" value="Send" >Send</button>
                     <div id="lnch_btn"><i class="fas fa-space-shuttle"></i></div>
                   </div>
                 </form>
@@ -469,7 +448,7 @@ $(window).on("load", function () {
 $(function submitAnimation() {
   const name = document.querySelector("#name");
   const emailAdress = document.querySelector("#email");
-  const text = document.querySelector("#textArea");
+  const text = document.querySelector("#message");
   const emailPattern =
     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
@@ -504,3 +483,26 @@ $(function submitAnimation() {
     }
   });
 });
+
+//Email js
+function sendMail(event) {
+  event.preventDefault(); // stop form from submitting and refreshing the page
+
+  let parms = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    message: document.getElementById("message").value,
+  };
+
+  emailjs
+    .send("service_7tyjlqf", "template_4lucuzo", parms)
+    .then(function (response) {
+      alert("Your email has been received!!");
+      console.log("SUCCESS!", response.status, response.text);
+      document.getElementById("feedback-form").reset(); // clear the form after sending
+    })
+    .catch(function (error) {
+      console.error("FAILED...", error);
+      alert("Failed to send email. Please try again later.");
+    });
+}
