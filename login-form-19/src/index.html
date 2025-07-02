@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <h2>Code Nexus</h2>
+        <section>
+            <h1>
+                <span>Welcome back!</span>
+            </h1>
+
+            <form id="form">
+                <label for="email">Email</label><br>
+                <input type="email" id="email" required><br><br>
+                <label for="password">Password</label><br>
+                <input type="password" id="password" required><br>
+                <button type="submit" id="submit">Sign in</button>
+            </form><br><br>
+            <h4>You don't have an account? <a href="../../index.html">Sign up</a></h4>
+        </section>
+        <img src="coding3.jpg" alt="coding image">
+        <img src="phone.jpg" alt="image">
+    </main>
+
+    <script>
+        document.getElementById("form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            if (email === "darshan@gmail.com" && password === "Darshan.20") {
+                window.location.href = "../../index.html"; // Redirect on successful login
+            } else {
+                alert("Invalid email or password! Please try again.");
+            }
+        });
+    </script>
+
+</body>
+
+</html>
